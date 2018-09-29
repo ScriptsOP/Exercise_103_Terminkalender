@@ -40,9 +40,19 @@ public class GUI extends javax.swing.JFrame {
         menu.setText("Termin");
 
         hinzufügen.setText("hinzufügen");
+        hinzufügen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hinzufügenActionPerformed(evt);
+            }
+        });
         menu.add(hinzufügen);
 
         löschen.setText("löschen");
+        löschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                löschenActionPerformed(evt);
+            }
+        });
         menu.add(löschen);
 
         ändern.setText("ändern");
@@ -70,6 +80,15 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hinzufügenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hinzufügenActionPerformed
+        TerminDialog td = new TerminDialog(this, true);
+        td.setVisible(true);
+    }//GEN-LAST:event_hinzufügenActionPerformed
+
+    private void löschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_löschenActionPerformed
+        bl.remove(liOutput.getSelectedIndex());
+    }//GEN-LAST:event_löschenActionPerformed
 
     /**
      * @param args the command line arguments
