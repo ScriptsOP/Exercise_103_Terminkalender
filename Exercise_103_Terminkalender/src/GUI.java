@@ -13,8 +13,11 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    private KalenderBL bl = new KalenderBL();
+    
     public GUI() {
         initComponents();
+        liOutput.setModel(bl);
     }
 
     /**
@@ -26,17 +29,43 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu = new javax.swing.JPopupMenu();
+        menu = new javax.swing.JMenu();
+        hinzufügen = new javax.swing.JMenuItem();
+        löschen = new javax.swing.JMenuItem();
+        ändern = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        liOutput = new javax.swing.JList<>();
+
+        menu.setText("Termin");
+
+        hinzufügen.setText("hinzufügen");
+        menu.add(hinzufügen);
+
+        löschen.setText("löschen");
+        menu.add(löschen);
+
+        ändern.setText("ändern");
+        menu.add(ändern);
+
+        popupMenu.add(menu);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        liOutput.setComponentPopupMenu(popupMenu);
+        jScrollPane1.setViewportView(liOutput);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +107,12 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem hinzufügen;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> liOutput;
+    private javax.swing.JMenuItem löschen;
+    private javax.swing.JMenu menu;
+    private javax.swing.JPopupMenu popupMenu;
+    private javax.swing.JMenuItem ändern;
     // End of variables declaration//GEN-END:variables
 }
