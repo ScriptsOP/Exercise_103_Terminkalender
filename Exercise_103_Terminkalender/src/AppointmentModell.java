@@ -3,11 +3,11 @@ import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
 
-public class KalenderBL extends AbstractListModel {
+public class AppointmentModell extends AbstractListModel {
 
-    private ArrayList<Termin> termine = new ArrayList<>();
+    private ArrayList<Appointment> termine = new ArrayList<>();
     
-    public void add(Termin t) {
+    public void add(Appointment t) {
         termine.add(t);
         fireIntervalAdded(this, termine.size() - 1, termine.size() - 1);
     }

@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class Termin {
+public class Appointment {
     private LocalDate day;
     private LocalDate month;
     private LocalDate year;
@@ -11,7 +11,7 @@ public class Termin {
     private LocalTime minute;
     private String text;
 
-    public Termin(LocalDate day, LocalDate month, LocalDate year, LocalTime hour, LocalTime minute, String text) {
+    public Appointment(LocalDate day, LocalDate month, LocalDate year, LocalTime hour, LocalTime minute, String text) {
         this.day = day;
         this.month = month;
         this.year = year;

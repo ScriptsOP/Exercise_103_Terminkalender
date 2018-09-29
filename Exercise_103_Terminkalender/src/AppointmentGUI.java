@@ -8,14 +8,14 @@
  *
  * @author JoZuG
  */
-public class GUI extends javax.swing.JFrame {
+public class AppointmentGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GUI
      */
-    private KalenderBL bl = new KalenderBL();
+    private AppointmentModell bl = new AppointmentModell();
     
-    public GUI() {
+    public AppointmentGUI() {
         initComponents();
         liOutput.setModel(bl);
     }
@@ -82,7 +82,7 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hinzufügenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hinzufügenActionPerformed
-        TerminDialog td = new TerminDialog(this, true);
+        AppointmentDlg td = new AppointmentDlg(this, true);
         td.setVisible(true);
     }//GEN-LAST:event_hinzufügenActionPerformed
 
@@ -107,20 +107,21 @@ public class GUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppointmentGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppointmentGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppointmentGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppointmentGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI().setVisible(true);
+                new AppointmentGUI().setVisible(true);
             }
         });
     }
