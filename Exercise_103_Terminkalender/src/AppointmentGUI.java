@@ -1,9 +1,9 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author JoZuG
@@ -14,7 +14,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     private AppointmentModell bl = new AppointmentModell();
-    
+
     public AppointmentGUI() {
         initComponents();
         liOutput.setModel(bl);
@@ -82,12 +82,18 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hinzufügenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hinzufügenActionPerformed
-        AppointmentDlg td = new AppointmentDlg(this, true);
-        td.setVisible(true);
+        AppointmentDlg ad = new AppointmentDlg(this, true);
+        ad.setVisible(true);
+
+        bl.add(ad.getAp());
     }//GEN-LAST:event_hinzufügenActionPerformed
 
     private void löschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_löschenActionPerformed
-        bl.remove(liOutput.getSelectedIndex());
+        int[] delete = liOutput.getSelectedIndices();
+
+        for (int i = delete.length - 1; i >= 0; i--) {
+            bl.remove(delete[i]);
+        }
     }//GEN-LAST:event_löschenActionPerformed
 
     /**

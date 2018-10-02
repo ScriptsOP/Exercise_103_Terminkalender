@@ -1,3 +1,9 @@
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,6 +20,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
      * Creates new form TerminDialog
      */
     private boolean ok = false;
+    private Appointment ap;
     
     public AppointmentDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -22,6 +29,10 @@ public class AppointmentDlg extends javax.swing.JDialog {
 
     public boolean isOk() {
         return ok;
+    }
+
+    public Appointment getAp() {
+        return ap;
     }
 
     /**
@@ -59,6 +70,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jLabel1, gridBagConstraints);
+
+        tfTag.setText("11");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
@@ -74,6 +87,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jLabel2, gridBagConstraints);
+
+        tfMonat.setText("05");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -91,6 +106,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jLabel3, gridBagConstraints);
+
+        tfJahr.setText("2002");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -108,6 +125,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jLabel4, gridBagConstraints);
+
+        tfStunde.setText("15");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -125,6 +144,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jLabel5, gridBagConstraints);
+
+        tfMinute.setText("30");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -142,6 +163,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jLabel6, gridBagConstraints);
+
+        tfText.setText("Text");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -181,6 +204,12 @@ public class AppointmentDlg extends javax.swing.JDialog {
 
     private void btÜbernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btÜbernehmenActionPerformed
         ok = true;
+        
+        String dateTime = String.format("%s.%s.%s - %s.%s", tfTag.getText(), tfMonat.getText(), tfJahr.getText(), tfStunde.getText(), tfMinute.getText());
+        String text = tfText.getText();
+        
+        ap = new Appointment(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d.M.yyyy - H.m")), text);
+        this.dispose();
     }//GEN-LAST:event_btÜbernehmenActionPerformed
 
     private void btAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbbrechenActionPerformed

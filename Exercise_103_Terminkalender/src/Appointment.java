@@ -1,51 +1,35 @@
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Appointment {
-    private LocalDate day;
-    private LocalDate month;
-    private LocalDate year;
-    private LocalTime hour;
-    private LocalTime minute;
+    private LocalDateTime dateTime;
     private String text;
 
-    public Appointment(LocalDate day, LocalDate month, LocalDate year, LocalTime hour, LocalTime minute, String text) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
-        this.hour = hour;
-        this.minute = minute;
+    public Appointment(LocalDateTime dateTime, String text) {
+        this.dateTime = dateTime;
         this.text = text;
     }
 
-    public LocalDate getDay() {
-        return day;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public LocalDate getMonth() {
-        return month;
-    }
-
-    public LocalDate getYear() {
-        return year;
-    }
-
-    public LocalTime getHour() {
-        return hour;
-    }
-
-    public LocalTime getMinute() {
-        return minute;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getText() {
         return text;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s.%s.%s - %s.%s --> %s", getDay(), getMonth(), getYear(), getHour(), getMinute(), getText());
+        return String.format("%s --> %s", dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm")), getText());
     }
 }

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.AbstractListModel;
 
 
@@ -9,6 +10,7 @@ public class AppointmentModell extends AbstractListModel {
     
     public void add(Appointment t) {
         termine.add(t);
+        Collections.sort(termine, new AppointmentComparator());
         fireIntervalAdded(this, termine.size() - 1, termine.size() - 1);
     }
     
