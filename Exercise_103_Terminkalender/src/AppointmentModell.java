@@ -1,4 +1,5 @@
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.AbstractListModel;
@@ -14,7 +15,12 @@ public class AppointmentModell extends AbstractListModel {
         fireIntervalAdded(this, termine.size() - 1, termine.size() - 1);
     }
     
-    public void remove(int index) {
+    public void remove(Appointment a) {
+        termine.remove(a);
+        fireContentsChanged(this, 0, termine.size() - 1);
+    }
+    
+    public void removeIndex(int index) {
         termine.remove(index);
         fireContentsChanged(this, 0, termine.size() - 1);
     }

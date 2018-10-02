@@ -13,7 +13,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    private AppointmentModell bl = new AppointmentModell();
+    public static AppointmentModell bl = new AppointmentModell();
 
     public AppointmentGUI() {
         initComponents();
@@ -56,6 +56,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         menu.add(löschen);
 
         ändern.setText("ändern");
+        ändern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ändernActionPerformed(evt);
+            }
+        });
         menu.add(ändern);
 
         popupMenu.add(menu);
@@ -89,12 +94,19 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_hinzufügenActionPerformed
 
     private void löschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_löschenActionPerformed
-        int[] delete = liOutput.getSelectedIndices();
-
-        for (int i = delete.length - 1; i >= 0; i--) {
-            bl.remove(delete[i]);
+        int[] array = liOutput.getSelectedIndices();
+        
+        for (int i = array.length - 1; i >= 0; i--) {
+            bl.removeIndex(array[i]);
         }
     }//GEN-LAST:event_löschenActionPerformed
+
+    private void ändernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändernActionPerformed
+        AppointmentDlg ad = new AppointmentDlg(this, true, liOutput.getSelectedValue());
+        ad.setVisible(true);
+
+        bl.add(ad.getAp());
+    }//GEN-LAST:event_ändernActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,7 +147,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem hinzufügen;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> liOutput;
+    private javax.swing.JList<Appointment> liOutput;
     private javax.swing.JMenuItem löschen;
     private javax.swing.JMenu menu;
     private javax.swing.JPopupMenu popupMenu;

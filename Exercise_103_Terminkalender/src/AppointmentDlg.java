@@ -1,7 +1,5 @@
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /*
@@ -9,7 +7,6 @@ import java.time.format.DateTimeFormatter;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author JoZuG
@@ -20,11 +17,25 @@ public class AppointmentDlg extends javax.swing.JDialog {
      * Creates new form TerminDialog
      */
     private boolean ok = false;
+    private boolean edit = false;
     private Appointment ap;
-    
+
     public AppointmentDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public AppointmentDlg(java.awt.Frame parent, boolean modal, Appointment ap) {
+        super(parent, modal);
+        this.ap = ap;
+        initComponents();
+        tfJahr.setText(ap.getDateTime().getYear() + "");
+        tfMonat.setText(ap.getDateTime().getMonthValue() + "");
+        tfTag.setText(ap.getDateTime().getDayOfMonth() + "");
+        tfStunde.setText(ap.getDateTime().getHour() + "");
+        tfMinute.setText(ap.getDateTime().getMinute() + "");
+        tfText.setText(ap.getText());
+        edit = true;
     }
 
     public boolean isOk() {
@@ -204,11 +215,20 @@ public class AppointmentDlg extends javax.swing.JDialog {
 
     private void btÜbernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btÜbernehmenActionPerformed
         ok = true;
-        
-        String dateTime = String.format("%s.%s.%s - %s.%s", tfTag.getText(), tfMonat.getText(), tfJahr.getText(), tfStunde.getText(), tfMinute.getText());
-        String text = tfText.getText();
-        
-        ap = new Appointment(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d.M.yyyy - H.m")), text);
+
+        if (edit) {
+            AppointmentGUI.bl.remove(ap);
+            String dateTime = String.format("%s.%s.%s - %s.%s", tfTag.getText(), tfMonat.getText(), tfJahr.getText(), tfStunde.getText(), tfMinute.getText());
+            String text = tfText.getText();
+
+            ap = new Appointment(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d.M.yyyy - H.m")), text);
+        } else {
+            String dateTime = String.format("%s.%s.%s - %s.%s", tfTag.getText(), tfMonat.getText(), tfJahr.getText(), tfStunde.getText(), tfMinute.getText());
+            String text = tfText.getText();
+
+            ap = new Appointment(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d.M.yyyy - H.m")), text);
+        }
+
         this.dispose();
     }//GEN-LAST:event_btÜbernehmenActionPerformed
 
