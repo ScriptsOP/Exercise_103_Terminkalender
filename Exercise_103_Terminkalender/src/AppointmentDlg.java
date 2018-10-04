@@ -29,6 +29,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
         super(parent, modal);
         this.ap = ap;
         initComponents();
+        
         tfJahr.setText(ap.getDateTime().getYear() + "");
         tfMonat.setText(ap.getDateTime().getMonthValue() + "");
         tfTag.setText(ap.getDateTime().getDayOfMonth() + "");

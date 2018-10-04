@@ -1,11 +1,13 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class Appointment {
+public class Appointment implements Serializable {
     private LocalDateTime dateTime;
     private String text;
+    private static transient DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm");
 
     public Appointment(LocalDateTime dateTime, String text) {
         this.dateTime = dateTime;
@@ -30,6 +32,6 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return String.format("%s --> %s", dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm")), getText());
+        return String.format("%s --> %s", dateTime.format(dtf), getText());
     }
 }

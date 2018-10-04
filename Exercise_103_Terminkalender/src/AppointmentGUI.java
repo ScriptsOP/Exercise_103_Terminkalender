@@ -1,4 +1,12 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,10 +22,17 @@ public class AppointmentGUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public static AppointmentModell bl = new AppointmentModell();
+    private File f = new File("src\\data.bin");
 
-    public AppointmentGUI() {
+    public AppointmentGUI() throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
         liOutput.setModel(bl);
+        try{
+            bl.load(f);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "load error!");
+        }
+        
     }
 
     /**
@@ -66,6 +81,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         popupMenu.add(menu);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         liOutput.setComponentPopupMenu(popupMenu);
         jScrollPane1.setViewportView(liOutput);
@@ -108,6 +128,14 @@ public class AppointmentGUI extends javax.swing.JFrame {
         bl.add(ad.getAp());
     }//GEN-LAST:event_ändernActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            bl.save(f);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "save error!");
+        }
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -139,7 +167,13 @@ public class AppointmentGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppointmentGUI().setVisible(true);
+                try {
+                    new AppointmentGUI().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(AppointmentGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AppointmentGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
